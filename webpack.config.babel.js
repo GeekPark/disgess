@@ -14,13 +14,15 @@ const config = {
     root: [
       path.join(__dirname, 'src/'),
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.css'],
   },
   module: {
     loaders: [
+      { test: /\.json$/, loader: 'json-loader' },
       { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.(png|jpg|gif)$/, loader: 'url?limit=25000' },
-      { test: /\.css$/, loader: 'style-loader!css-loader!postcss-loader' },
+      { test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:4]',
+      },
     ],
   },
   postcss() {
