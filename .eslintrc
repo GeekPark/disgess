@@ -3,6 +3,8 @@
   "rules": {
     "react/prefer-stateless-function": 0,
     "max-len": 0,
+    "camelcase": 0,
+    "no-script-url": 0,
   },
   "globals": {
   }

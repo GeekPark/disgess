@@ -1,2 +1,18 @@
+html, body {
+  padding: 0;
+}
+
 .container {
+  max-width: 60vw;
+  font-size: 14px;
+  font-family: 'Helvetica Neue', 'Helvetica','Hiragino Sans GB', 'PingHei', 'PingFang SC', 'STHeitiSC-Light', 'Microsoft YaHei','Lantinghei SC', 'Arial', sans-serif;
+
+  & a {
+    color: #2ea5de;
+    text-decoration: none;
+
+    &:hover {
+      color: #2a6496;
+    }
+  }
 }

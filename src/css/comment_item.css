@@ -1,20 +1,43 @@
-.depth-1 {
-  position: relative;
-  padding-left: 0;
+.reply {
+  & .body {
+    background-color: #ebf7ed;
 
+    &::before {
+      border-top-color: #ebf7ed;
+    }
+  }
+
+  & .reply-box {
+    margin-bottom: 10px;
+  }
+}
+
+.item {
+  position: relative;
+}
+
+.depth-1 {
   &:not(:first-child) {
     padding-top: 20px;
     border-top: 1px dashed #dedede;
   }
+
+  & .avatar-container {
+    top: 20px;
+  }
 }
 
-.relative {
-  position: relative;
+.depth-2 {
+  margin-left: 50px;
+}
+
+.depth-3 {
+  margin-left: 100px;
 }
 
 .avatar-container {
   display: inline-block;
-  width: $avatar-size;
+  width: 50px;
   position: absolute;
   top: 0;
   left: 0;
@@ -33,5 +56,59 @@
     width: 100%;
     height: 100%;
     border-radius: 0;
+  }
+}
+
+.body-container {
+  display: inline-block;
+  width: 100%;
+  padding-left: 75px;
+}
+
+.info {
+
+}
+
+.dot {
+  margin: 0 5px;
+}
+
+.time {
+  color: #c7c8c8;
+}
+
+.body {
+  position: relative;
+  background-color: #ebf8fc;
+  border-radius: 2px;
+  padding: 15px;
+  width: 100%;
+
+  & p {
+    margin: 0;
+  }
+
+  &::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+
+    border: 10px solid;
+    border-color: #ebf8fc transparent transparent transparent;
+
+    z-index: 5;
+    transform: translateX(-50%);
+  }
+}
+
+.action {
+  margin: 10px auto;
+
+  & a:not(.likes) {
+    margin-right: 15px;
   }
 }
