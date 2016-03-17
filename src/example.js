@@ -3,4 +3,4 @@ import ReactDOM from 'react-dom';
 
 import Comments from './Comments';
 
-ReactDOM.render(<Comments />, document.querySelector('#app'));
+ReactDOM.render(<Comments isLogin={false} />, document.querySelector('#app'));

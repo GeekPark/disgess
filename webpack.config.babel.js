@@ -1,5 +1,4 @@
 import path from 'path';
-import cssnext from 'postcss-cssnext';
 
 const config = {
   context: __dirname,
@@ -19,14 +18,19 @@ const config = {
   module: {
     loaders: [
       { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(png|jpg)$/, loader: 'url-loader?mimetype=image/png' },
       { test: /\.jsx?$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:4]',
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:4]!postcss-loader',
       },
     ],
   },
   postcss() {
-    return [cssnext];
+    return [
+      require('postcss-cssnext'),
+      require('postcss-nesting'),
+      require('postcss-selector-not'),
+    ];
   },
   devServer: {
     devtool: true,
