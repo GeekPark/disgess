@@ -3,16 +3,80 @@ html, body {
 }
 
 .container {
-  max-width: 60vw;
-  font-size: 14px;
+  width: 60vw;
+  font-size: 16px;
   font-family: 'Helvetica Neue', 'Helvetica','Hiragino Sans GB', 'PingHei', 'PingFang SC', 'STHeitiSC-Light', 'Microsoft YaHei','Lantinghei SC', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
 
   & a {
+    font-size: .9em;
     color: #2ea5de;
     text-decoration: none;
 
     &:hover {
       color: #2a6496;
     }
+  }
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.inputbox {
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.input-form {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding-left: 75px;
+}
+
+.reply-inputbox {
+  padding-left: 50px;
+}
+
+.sum-number {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.textarea {
+  border: none;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: inset 2px 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  width: 100%;
+  min-height: 100px;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.submit {
+  text-align: right;
+  margin-top: 20px;
+  padding: 6px 20px;
+  border: none;
+  background-color: #1abc9c;
+  color: #fff;
+  display: inline-block;
+  float: right;
+  outline: 0;
+  opacity: 1;
+  transition: background-color 0.3s;
+  font-size: 0.8em;
+  cursor: pointer;
+  font-size: .8em;
+  line-height: 1.5em;
+
+  &:hover {
+    background-color: #23A58B;
   }
 }

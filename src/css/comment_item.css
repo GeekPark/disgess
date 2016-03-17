@@ -66,7 +66,7 @@
 }
 
 .info {
-
+  margin-bottom: 10px;
 }
 
 .dot {
@@ -83,6 +83,7 @@
   border-radius: 2px;
   padding: 15px;
   width: 100%;
+  font-size: .9em;
 
   & p {
     margin: 0;

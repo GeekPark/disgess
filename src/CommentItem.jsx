@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import moment from 'moment';
-import { PropTypes } from 'react';
 
 import { randomUserName, tryKey } from './utils';
 import Avatar from './Avatar';
