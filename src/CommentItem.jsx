@@ -2,8 +2,11 @@ import React, { PropTypes } from 'react';
 import moment from 'moment';
 
 import { randomUserName, tryKey } from './utils';
+
 import Avatar from './Avatar';
 import DeleteBtn from './DeleteBtn';
+import InputBox from './InputBox';
+
 import style from './css/comment_item';
 
 moment.locale('zh-cn');
@@ -16,22 +19,22 @@ class CommentItem extends React.Component {
       showInput: false,
     };
 
-    this.toggleApply = this.toggleApply.bind(this);
+    this.toggleInput = this.toggleInput.bind(this);
   }
 
-  toggleApply() {
+  toggleInput() {
     this.setState({
       showInput: !this.state.showInput,
     });
   }
 
   render() {
-    const { id, body, depth, user, parent_id, created_at, isAdmin, action } = this.props;
+    const { id, body, depth, user, parent_id, created_at, isAdmin, action, liked } = this.props;
     const isReplyStyle = parent_id === 0 ? '' : style.reply;
     const userURL = user ? `//www.geekpark.net${user.url}` : 'javascript:;';
     const userName = user ? user.username : randomUserName();
     const replyBtn = depth < 3 ? (
-      <a href="javascript:;" onClick={this.toggleApply}>{this.state.showInput ? '取消回复' : '回复'}</a>
+      <a href="javascript:;" onClick={this.toggleInput}>{this.state.showInput ? '取消回复' : '回复'}</a>
     ) : null;
 
     return (
@@ -47,8 +50,10 @@ class CommentItem extends React.Component {
           <div className={style.action}>
             {replyBtn}
             {isAdmin ? <DeleteBtn action={action} id={id} /> : null}
+            <a href="javascript:;" className={`${style.like} ${liked ? style['like-success'] : ''}`}></a>
           </div>
         </div>
+        { this.state.showInput ? <InputBox action={action} isReply /> : null }
       </div>
     );
   }
@@ -63,6 +68,7 @@ CommentItem.propTypes = {
   parent_id: PropTypes.number.isRequired,
   created_at: PropTypes.string.isRequired,
   action: PropTypes.object.isRequired,
+  liked: PropTypes.bool.isRequired,
 };
 
 export default CommentItem;

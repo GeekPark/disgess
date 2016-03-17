@@ -113,3 +113,25 @@
     margin-right: 15px;
   }
 }
+
+.like {
+  text-align: center;
+  color: #b1b1b1;
+  float: right;
+  width: 18px;
+  height: 18px;
+  background: url(../images/unlike.png) 0 0 no-repeat;
+  background-size: auto 100%;
+}
+
+.like-success {
+  background-image: url(../images/liked.png);
+  animation: like 0.5s;
+  transform-origin: bottom;
+}
+
+@keyframes like {
+  50% {
+    transform: scale(1.5);
+  }
+}

@@ -52,6 +52,7 @@ class Components extends React.Component {
           <h3>还没有评论呢，快来抢沙发！</h3>
         }
         <InputBox action={action} />
+        {/* empty div for css first-child selector */}
         <div>
           { this.state.comments.map((v, i) => (
             <CommentItem key={i} {...v} isAdmin={this.props.isAdmin} action={action} />)
