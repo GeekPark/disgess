@@ -13,12 +13,12 @@ const modifyProps = prop => prop.map(v => {
   if (v.user === null) {
     result.user = mockUser();
   } else {
-    result.user.avatar += '?imageView2/1/w/100/h/100';
+    result.user.avatar.url += '?imageView2/1/w/100/h/100';
   }
   return result;
 });
 
-class Components extends React.Component {
+class Comments extends React.Component {
   constructor() {
     super();
 
@@ -58,6 +58,11 @@ class Components extends React.Component {
 
     const length = tryKey(this.state.comments, 'length');
 
+    // order by ancestry
+    const commentList = this.state.comments.sort((a, b) => (
+      a.ancestry.toString() > b.ancestry.toString()
+    ));
+
     return (
       <div className={style.container}>
         {
@@ -68,7 +73,7 @@ class Components extends React.Component {
         <InputBox action={action} />
         {/* empty div for css first-child selector */}
         <div>
-          { this.state.comments.map((v, i) => (
+          { commentList.map((v, i) => (
             <CommentItem key={i} {...v} isAdmin={isAdmin} action={action} />)
           )}
         </div>
@@ -77,16 +82,15 @@ class Components extends React.Component {
   }
 }
 
-Components.propTypes = {
-  isLogin: PropTypes.bool.isRequired,
+Comments.propTypes = {
   isAdmin: PropTypes.bool,
   currentUser: PropTypes.object,
   type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
   id: PropTypes.number.isRequired,
 };
 
-Components.defaultProps = {
+Comments.defaultProps = {
   currentUser: mockUser(),
 };
 
-export default Components;
+export default Comments;

@@ -110,7 +110,7 @@
 .action {
   margin: 10px auto;
 
-  & a:not(.likes) {
+  & a:not(.like) {
     margin-right: 15px;
   }
 }
@@ -119,16 +119,28 @@
   text-align: center;
   color: #b1b1b1;
   float: right;
+}
+
+.like-icon {
+  display: inline-block;
+  vertical-align: middle;
   width: 18px;
   height: 18px;
   background: url(../images/unlike.png) 0 0 no-repeat;
   background-size: auto 100%;
+  margin-right: 3px;
 }
 
-.like-success {
+.like-success .like-icon {
   background-image: url(../images/liked.png);
   animation: like 0.5s;
   transform-origin: bottom;
+}
+
+.like-nums {
+  display: inline-block;
+  vertical-align: middle;
+  color: #b1b1b1;
 }
 
 @keyframes like {

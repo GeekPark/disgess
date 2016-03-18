@@ -9,7 +9,7 @@ const catchErr = res => {
 };
 
 const result = res => (
-  res.status === 200 ? Promise.resolve(res.json()) : Promise.reject(res)
+  /20[0-9]/.test(res.status) ? Promise.resolve(res.json()) : Promise.reject(res)
 );
 
 const apiFetch = (url, param = null) => fetch(api(url), param).then(result).catch(catchErr);

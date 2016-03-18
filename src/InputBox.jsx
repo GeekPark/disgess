@@ -21,12 +21,12 @@ class InputBox extends React.Component {
     return (
       <div className={`${style.inputbox} ${isReply ? style['reply-inputbox'] : ''}`}>
         <div style={{ position: 'relative' }}>
-          <Avatar name={user.username} src={user.avatar} />
+          <Avatar name={user.username} src={user.avatar.url} />
           <form className={style['input-form']}>
             <textarea className={style.textarea} ref="textarea"></textarea>
             <input type="button" className={style.submit}
               onClick={this.handleClick}
-              value={isReply ? '发表回复' : '提交评论'}
+              value={isReply ? '提交回复' : '发表评论'}
             />
           </form>
         </div>
