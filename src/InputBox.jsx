@@ -10,6 +10,8 @@ class InputBox extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
+    if (this.refs.textarea.value.length === 0) return;
+
     const params = {
       content: this.refs.textarea.value,
     };

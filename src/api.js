@@ -6,6 +6,7 @@ const api = path => `${URL}${path}`;
 const catchErr = res => {
   console.error(res);
   res.json().then(d => alert(d.detail || d.error));
+  return Promise.reject(res);
 };
 
 const result = res => (
@@ -23,15 +24,10 @@ const generateFormData = form => {
 export default {
   get: ({ type, id }) => apiFetch(`comments.json?commentable_type=${type}&commentable_id=${id}`),
 
-  delete() {
-    // return fetch(URL, {
-    //   method: 'DELETE',
-    // });
-    // return null;
-  },
+  delete: id => apiFetch(`comments/${id}.json`, { method: 'DELETE' }),
 
   /*
-  @params: commentable_id, commentable_type, content, [parent_id], [ancestry]
+  @params: commentable_id, commentable_type, content, [parent_id]
   */
   add: params => apiFetch('comments.json', {
     method: 'POST',

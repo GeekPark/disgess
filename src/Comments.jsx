@@ -39,9 +39,8 @@ class Comments extends React.Component {
     const { currentUser, type, id, isAdmin } = this.props;
 
     // public action for components
-    // joint params send to API and do some callback and change global state
-    // child component invoke action just collect data/params to action
-    // all action should return a promise when api and global callback complete
+    // child action(params) => global action => API => global action => component action
+    //   params from ui        global param             update list         UI update
     const action = {
       currentUser,
       add(params) {
@@ -58,7 +57,10 @@ class Comments extends React.Component {
       },
       delete(commentID) {
         if (confirm('确认删除该评论？')) {
-          API.delete(commentID);
+          API.delete(commentID)
+            .then(() => {
+              _this.setState({ comments: _this.state.comments.filter(v => v.id !== commentID) });
+            });
         }
       },
     };
