@@ -35,7 +35,7 @@ class Components extends React.Component {
   }
 
   render() {
-    const { currentUser, type, id, isLogin, isAdmin } = this.props;
+    const { currentUser, type, id, isAdmin } = this.props;
 
     // public action for components
     // joint params send to API and do some callback and change global state

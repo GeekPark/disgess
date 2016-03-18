@@ -23,7 +23,7 @@ const generateFormData = form => {
 export default {
   get: ({ type, id }) => apiFetch(`comments.json?commentable_type=${type}&commentable_id=${id}`),
 
-  delete(id) {
+  delete() {
     // return fetch(URL, {
     //   method: 'DELETE',
     // });
