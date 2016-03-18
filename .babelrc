@@ -3,6 +3,7 @@
   "env": {
     "development": {
       "plugins": [
+        "transform-object-assign",
         ["react-transform", {
           "transforms": [{
             "transform": "react-transform-hmr",

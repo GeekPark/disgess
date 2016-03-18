@@ -13,6 +13,9 @@ const tryKey = (obj, key) => obj === null || !obj.hasOwnProperty(key) ? null : o
 
 const randomAvatar = () => avatars[random(0, avatars.length - 1)];
 
-const catchErr = res => console.error(res);
+const mockUser = () => ({
+  username: randomUserName(),
+  avatar: randomAvatar(),
+});
 
-export { random, randomUserName, tryKey, randomAvatar, catchErr };
+export { random, randomUserName, tryKey, randomAvatar, mockUser };

@@ -20,12 +20,16 @@ class CommentItem extends React.Component {
     };
 
     this.toggleInput = this.toggleInput.bind(this);
+    this.closeSelf = this.closeSelf.bind(this);
   }
 
-  toggleInput() {
-    this.setState({
-      showInput: !this.state.showInput,
-    });
+  toggleInput(e) {
+    const showInput = e === false ? false : !this.state.showInput;
+    this.setState({ showInput });
+  }
+
+  closeSelf() {
+    return this.toggleInput(false);
   }
 
   render() {
@@ -53,7 +57,7 @@ class CommentItem extends React.Component {
             <a href="javascript:;" className={`${style.like} ${liked ? style['like-success'] : ''}`}></a>
           </div>
         </div>
-        { this.state.showInput ? <InputBox action={action} isReply /> : null }
+        { this.state.showInput ? <InputBox action={action} isReply closeSelf={this.closeSelf} /> : null }
       </div>
     );
   }

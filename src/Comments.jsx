@@ -1,17 +1,12 @@
 import React, { PropTypes } from 'react';
 
 import API from './api';
-import { catchErr, tryKey, randomUserName, randomAvatar } from './utils';
+import { tryKey, mockUser } from './utils';
 
 import CommentItem from './commentItem';
 import InputBox from './InputBox';
 
 import style from './css/comments';
-
-const mockUser = () => ({
-  username: randomUserName(),
-  avatar: randomAvatar(),
-});
 
 const modifyProps = prop => prop.map(v => {
   const result = v;
@@ -36,21 +31,28 @@ class Components extends React.Component {
     const _this = this;
     const { type, id } = this.props;
     API.get({ type, id })
-      .then(d => _this.setState({ comments: modifyProps(d) }))
-      .catch(catchErr);
+      .then(d => _this.setState({ comments: modifyProps(d) }));
   }
 
   render() {
-    const currentUser = this.props.currentUser || mockUser();
+    const { currentUser, type, id, isLogin, isAdmin } = this.props;
 
+    // public action for components
+    // joint params send to API and do some callback and change global state
+    // child component invoke action just collect data/params to action
+    // all action should return a promise when api and global callback complete
     const action = {
-      delete(id) {
-        if (confirm('确认删除该评论？')) {
-          API.delete(id).then(d => console.log(d)).catch(e => console.error(e));
-        }
+      currentUser,
+      add(params) {
+        return API.add(Object.assign({
+          commentable_id: id,
+          commentable_type: type,
+        }, params));
       },
-      getUser() {
-        return currentUser;
+      delete(commentID) {
+        if (confirm('确认删除该评论？')) {
+          API.delete(commentID);
+        }
       },
     };
 
@@ -67,7 +69,7 @@ class Components extends React.Component {
         {/* empty div for css first-child selector */}
         <div>
           { this.state.comments.map((v, i) => (
-            <CommentItem key={i} {...v} isAdmin={this.props.isAdmin} action={action} />)
+            <CommentItem key={i} {...v} isAdmin={isAdmin} action={action} />)
           )}
         </div>
       </div>
@@ -81,6 +83,10 @@ Components.propTypes = {
   currentUser: PropTypes.object,
   type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
   id: PropTypes.number.isRequired,
+};
+
+Components.defaultProps = {
+  currentUser: mockUser(),
 };
 
 export default Components;
