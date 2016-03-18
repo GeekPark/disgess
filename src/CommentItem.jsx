@@ -57,7 +57,7 @@ class CommentItem extends React.Component {
             </a>
           </div>
         </div>
-        { this.state.showInput ? <InputBox action={action} isReply closeSelf={this.closeSelf} /> : null }
+        { this.state.showInput ? <InputBox action={action} parentID={id} closeSelf={this.closeSelf} /> : null }
       </div>
     );
   }

@@ -5,7 +5,7 @@ const api = path => `${URL}${path}`;
 
 const catchErr = res => {
   console.error(res);
-  res.json().then(d => alert(d.detail));
+  res.json().then(d => alert(d.detail || d.error));
 };
 
 const result = res => (

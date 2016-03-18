@@ -10,20 +10,25 @@ class InputBox extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    this.props.action.add({
+    const params = {
       content: this.refs.textarea.value,
-    }).then(this.props.closeSelf);
+    };
+    this.refs.textarea.value = '';
+
+    if (this.props.parentID !== undefined) params.parent_id = this.props.parentID;
+    this.props.action.add(params).then(this.props.closeSelf);
   }
   render() {
-    const { isReply, action } = this.props;
+    const { parentID, action } = this.props;
     const user = action.currentUser;
+    const isReply = parentID !== undefined;
 
     return (
       <div className={`${style.inputbox} ${isReply ? style['reply-inputbox'] : ''}`}>
         <div style={{ position: 'relative' }}>
           <Avatar name={user.username} src={user.avatar.url} />
           <form className={style['input-form']}>
-            <textarea className={style.textarea} ref="textarea"></textarea>
+            <textarea className={style.textarea} ref="textarea" autoFocus={isReply}></textarea>
             <input type="button" className={style.submit}
               onClick={this.handleClick}
               value={isReply ? '提交回复' : '发表评论'}
@@ -37,7 +42,7 @@ class InputBox extends React.Component {
 
 InputBox.propTypes = {
   closeSelf: PropTypes.func,
-  isReply: PropTypes.bool,
+  parentID: PropTypes.number,
   action: PropTypes.object.isRequired,
 };
 

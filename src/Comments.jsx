@@ -35,6 +35,7 @@ class Comments extends React.Component {
   }
 
   render() {
+    const _this = this;
     const { currentUser, type, id, isAdmin } = this.props;
 
     // public action for components
@@ -47,7 +48,13 @@ class Comments extends React.Component {
         return API.add(Object.assign({
           commentable_id: id,
           commentable_type: type,
-        }, params));
+        }, params))
+        .then(d => {
+          const newComment = d.comment;
+          newComment.user = currentUser;
+          const comments = _this.state.comments.concat([newComment]);
+          _this.setState({ comments });
+        });
       },
       delete(commentID) {
         if (confirm('确认删除该评论？')) {
