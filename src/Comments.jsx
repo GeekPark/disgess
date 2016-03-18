@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
-import { getComments } from './api';
-import { randomUserName, randomAvatar } from './utils';
+import API from './api';
+import { catchErr, tryKey, randomUserName, randomAvatar } from './utils';
 
 import CommentItem from './commentItem';
 import InputBox from './InputBox';
@@ -28,8 +28,16 @@ class Components extends React.Component {
     super();
 
     this.state = {
-      comments: modifyProps(getComments()),
+      comments: [],
     };
+  }
+
+  componentWillMount() {
+    const _this = this;
+    const { type, id } = this.props;
+    API.get({ type, id })
+      .then(d => _this.setState({ comments: modifyProps(d) }))
+      .catch(catchErr);
   }
 
   render() {
@@ -37,18 +45,22 @@ class Components extends React.Component {
 
     const action = {
       delete(id) {
-        console.log(id);
+        if (confirm('确认删除该评论？')) {
+          API.delete(id).then(d => console.log(d)).catch(e => console.error(e));
+        }
       },
       getUser() {
         return currentUser;
       },
     };
 
+    const length = tryKey(this.state.comments, 'length');
+
     return (
       <div className={style.container}>
         {
-          this.state.comments.length ?
-          <h3>已有<span className={style['sum-number']}>{this.state.comments.length}</span>条评论</h3> :
+          length ?
+          <h3>已有<span className={style['sum-number']}>{length}</span>条评论</h3> :
           <h3>还没有评论呢，快来抢沙发！</h3>
         }
         <InputBox action={action} />
@@ -67,6 +79,8 @@ Components.propTypes = {
   isLogin: PropTypes.bool.isRequired,
   isAdmin: PropTypes.bool,
   currentUser: PropTypes.object,
+  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  id: PropTypes.number.isRequired,
 };
 
 export default Components;

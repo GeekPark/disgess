@@ -20,10 +20,10 @@
   &:not(:first-child) {
     padding-top: 20px;
     border-top: 1px dashed #dedede;
-  }
 
-  & .avatar-container {
-    top: 20px;
+    & .avatar-container {
+      top: 20px;
+    }
   }
 }
 
@@ -75,6 +75,7 @@
 
 .time {
   color: #c7c8c8;
+  font-size: .9em;
 }
 
 .body {

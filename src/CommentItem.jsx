@@ -65,10 +65,10 @@ CommentItem.propTypes = {
   id: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
   depth: PropTypes.number.isRequired,
-  parent_id: PropTypes.number.isRequired,
   created_at: PropTypes.string.isRequired,
   action: PropTypes.object.isRequired,
   liked: PropTypes.bool.isRequired,
+  parent_id: PropTypes.number,
 };
 
 export default CommentItem;

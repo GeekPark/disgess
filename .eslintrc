@@ -5,6 +5,8 @@
     "max-len": 0,
     "camelcase": 0,
     "no-script-url": 0,
+    "no-alert": 0,
+    "no-console": 0,
   },
   "globals": {
   }

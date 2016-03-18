@@ -1,4 +1,5 @@
 import path from 'path';
+import webpack from 'webpack';
 
 const config = {
   context: __dirname,
@@ -32,6 +33,13 @@ const config = {
       require('postcss-selector-not'),
     ];
   },
+  plugins: [
+    new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
+    new webpack.ProvidePlugin({
+      Promise: 'es6-promise',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
+    }),
+  ],
   devServer: {
     devtool: true,
     colors: true,
