@@ -29,8 +29,8 @@ class Comments extends React.Component {
 
   componentWillMount() {
     const _this = this;
-    const { type, id } = this.props;
-    API.get({ type, id })
+    const { type, token, id } = this.props;
+    API.get({ token, type, id })
       .then(d => _this.setState({ comments: modifyProps(d) }));
   }
 
@@ -62,6 +62,25 @@ class Comments extends React.Component {
               _this.setState({ comments: _this.state.comments.filter(v => v.id !== commentID) });
             });
         }
+      },
+      like(commentID) {
+        if (token.length === 0) {
+          if (confirm('点赞需要登录喔，点击确定去登录')) window.location.href = this.props.loginURL;
+          return;
+        }
+
+        API.like({ token, id: commentID }).then(d => {
+          _this.setState({
+            comment: _this.state.comments.map(v => {
+              const newState = v;
+              if (v.id === commentID) {
+                newState.liked = !v.liked;
+                newState.ups_count = d.ups_count;
+              }
+              return newState;
+            }),
+          });
+        });
       },
     };
 
@@ -97,6 +116,7 @@ Comments.propTypes = {
   token: PropTypes.string,
   id: PropTypes.number.isRequired,
   type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  loginURL: PropTypes.string.isRequired,
 };
 
 Comments.defaultProps = {

@@ -21,12 +21,14 @@ const generateFormData = form => {
   return f;
 };
 
+const withToken = token => `?access_token=${token}`;
+
 export default {
-  get: ({ type, id }) => apiFetch(`comments.json?commentable_type=${type}&commentable_id=${id}`),
+  get: ({ token, type, id }) => apiFetch(`comments.json${withToken(token)}&commentable_type=${type}&commentable_id=${id}`),
 
-  delete: ({ token, id }) => apiFetch(`comments/${id}.json?access_token=${token}`, { method: 'DELETE' }),
+  delete: ({ token, id }) => apiFetch(`comments/${id}.json${withToken(token)}`, { method: 'DELETE' }),
 
-  like: ({ token, id }) => apiFetch(`comments/${id}.json?access_token=${token}`, { method: 'PATCH' }),
+  like: ({ token, id }) => apiFetch(`comments/${id}/up.json${withToken(token)}`, { method: 'PUT' }),
 
   /*
   @params: commentable_id, commentable_type, content, [parent_id]

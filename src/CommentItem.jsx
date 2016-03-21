@@ -19,6 +19,7 @@ class CommentItem extends React.Component {
 
     this.toggleInput = this.toggleInput.bind(this);
     this.closeSelf = this.closeSelf.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   toggleInput(e) {
@@ -28,6 +29,11 @@ class CommentItem extends React.Component {
 
   closeSelf() {
     return this.toggleInput(false);
+  }
+
+  handleLike() {
+    const { action, id } = this.props;
+    action.like(id);
   }
 
   render() {
@@ -51,7 +57,7 @@ class CommentItem extends React.Component {
           <div className={style.action}>
             {replyBtn}
             {isAdmin ? <DeleteBtn action={action} id={id} /> : null}
-            <a href="javascript:;" className={`${style.like} ${liked ? style['like-success'] : ''}`}>
+            <a href="javascript:;" onClick={this.handleLike} className={`${style.like} ${liked ? style['like-success'] : ''}`}>
               <i className={style['like-icon']}></i>
               <span className={style['like-nums']}>{ups_count}</span>
             </a>
