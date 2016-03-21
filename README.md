@@ -1,4 +1,4 @@
-# disgess [![Build Status](http://img.shields.io/travis/geekpark/disgess.svg)](https://travis-ci.org/geekpark/disgess)
+# disgess [![Build Status](https://api.travis-ci.org/GeekPark/disgess.svg)](https://travis-ci.org/GeekPark/disgess)
 GeekPark official discuss component
 
 ## Install
