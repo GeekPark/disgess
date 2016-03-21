@@ -36,7 +36,7 @@ class Comments extends React.Component {
 
   render() {
     const _this = this;
-    const { currentUser, type, id, isAdmin } = this.props;
+    const { currentUser, type, id, isAdmin, token } = this.props;
 
     // public action for components
     // child action(params) => global action => API => global action => component action
@@ -49,7 +49,7 @@ class Comments extends React.Component {
           commentable_type: type,
         }, params))
         .then(d => {
-          const newComment = d.comment;
+          const newComment = d;
           newComment.user = currentUser;
           const comments = _this.state.comments.concat([newComment]);
           _this.setState({ comments });
@@ -57,7 +57,7 @@ class Comments extends React.Component {
       },
       delete(commentID) {
         if (confirm('确认删除该评论？')) {
-          API.delete(commentID)
+          API.delete({ id: commentID, token })
             .then(() => {
               _this.setState({ comments: _this.state.comments.filter(v => v.id !== commentID) });
             });
@@ -94,8 +94,9 @@ class Comments extends React.Component {
 Comments.propTypes = {
   isAdmin: PropTypes.bool,
   currentUser: PropTypes.object,
-  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  token: PropTypes.string,
   id: PropTypes.number.isRequired,
+  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
 };
 
 Comments.defaultProps = {

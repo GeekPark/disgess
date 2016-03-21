@@ -1,0 +1,7 @@
+windows:
+  - name: server
+    root: ./
+    layout: main-vertical
+    panes:
+      - ns
+      - z gpk_main; rs -b 0.0.0.0

@@ -24,7 +24,9 @@ const generateFormData = form => {
 export default {
   get: ({ type, id }) => apiFetch(`comments.json?commentable_type=${type}&commentable_id=${id}`),
 
-  delete: id => apiFetch(`comments/${id}.json`, { method: 'DELETE' }),
+  delete: ({ token, id }) => apiFetch(`comments/${id}.json?access_token=${token}`, { method: 'DELETE' }),
+
+  like: ({ token, id }) => apiFetch(`comments/${id}.json?access_token=${token}`, { method: 'PATCH' }),
 
   /*
   @params: commentable_id, commentable_type, content, [parent_id]
