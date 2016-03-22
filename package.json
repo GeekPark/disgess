@@ -1,6 +1,6 @@
 {
   "name": "@geekpark/disgess",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "GeekPark official discuss component",
   "main": "index.js",
   "scripts": {

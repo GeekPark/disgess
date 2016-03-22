@@ -39,7 +39,7 @@ class Comments extends React.Component {
         _this.doCallback('onGet', d);
       });
 
-    if (token === null || !token.length) return;
+    if (!token) return;
     user().then(d => {
       if (d.roles.indexOf('admin') !== -1) {
         _this.setState({ isAdmin: true });
@@ -86,7 +86,7 @@ class Comments extends React.Component {
         }
       },
       like(commentID) {
-        if (token.length === 0) {
+        if (!token) {
           if (confirm('点赞需要登录喔，点击确定去登录')) window.location.href = this.props.loginURL;
           return;
         }
