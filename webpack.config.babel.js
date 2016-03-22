@@ -42,6 +42,7 @@ const config = {
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
   ],
+  target: 'node',
   devServer: {
     devtool: true,
     colors: true,
@@ -55,10 +56,28 @@ if (isProduction) {
     index: './src/Comments.jsx',
   };
 
+  config.output.libraryTarget = 'umd';
+  config.output.library = 'disgess';
+
   config.externals = {
-    moment: 'moment',
-    react: 'react',
-    'react-dom': 'react-dom',
+    react: {
+      root: 'React',
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+    },
+    'react-dom': {
+      root: 'ReactDOM',
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+    },
+    moment: {
+      root: 'Moment',
+      commonjs: 'moment',
+      commonjs2: 'moment',
+      amd: 'moment',
+    },
   };
 
   config.output.path = './';

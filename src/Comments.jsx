@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import generAPI from './api';
 import { tryKey, mockUser } from './utils';
@@ -39,7 +39,7 @@ class Comments extends React.Component {
         _this.doCallback('onGet', d);
       });
 
-    if (!token.length) return;
+    if (token === null || !token.length) return;
     user().then(d => {
       if (d.roles.indexOf('admin') !== -1) {
         _this.setState({ isAdmin: true });
@@ -135,11 +135,11 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-  id: PropTypes.number.isRequired,
-  loginURL: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
-  token: PropTypes.string,
-  cb: PropTypes.object,
+  id: React.PropTypes.number.isRequired,
+  loginURL: React.PropTypes.string.isRequired,
+  type: React.PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  token: React.PropTypes.string,
+  cb: React.PropTypes.object,
 };
 
 export default Comments;

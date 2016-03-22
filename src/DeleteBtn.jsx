@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 class DeleteBtn extends React.Component {
   constructor() {
@@ -14,8 +14,8 @@ class DeleteBtn extends React.Component {
 }
 
 DeleteBtn.propTypes = {
-  id: PropTypes.number.isRequired,
-  action: PropTypes.object.isRequired,
+  id: React.PropTypes.number.isRequired,
+  action: React.PropTypes.object.isRequired,
 };
 
 export default DeleteBtn;

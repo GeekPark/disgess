@@ -1,5 +1,4 @@
 import React from 'react';
-import { PropTypes } from 'react';
 
 import style from './css/comment_item';
 
@@ -12,8 +11,8 @@ const Avatar = ({ name, src }) => (
 );
 
 Avatar.propTypes = {
-  name: PropTypes.string,
-  src: PropTypes.string,
+  name: React.PropTypes.string,
+  src: React.PropTypes.string,
 };
 
 export default Avatar;

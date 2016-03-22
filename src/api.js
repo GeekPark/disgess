@@ -1,6 +1,6 @@
 import { Promise } from 'es6-promise';
 
-const URL = '//dev.geekpark.net:3000/api/v1/';
+const URL = process.env.API_URL || '//www.geekpark.net/api/v1/';
 const api = path => `${URL}${path}`;
 
 const catchErr = res => {
@@ -21,7 +21,7 @@ const generateFormData = form => {
   return f;
 };
 
-const withToken = token => `?access_token=${token}`;
+const withToken = token => token === undefined || token === null ? '?' : `?access_token=${token}`;
 
 const generAPI = token => ({
   user: () => apiFetch(`user.json${withToken(token)}`),

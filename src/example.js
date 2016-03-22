@@ -8,7 +8,8 @@ const CONFIG = {
   type: 'Topic',
   loginURL: '//dev.geekpark.net:3000/user/login',
   // below params was optional
-  token: '806d73c574bf4c478767223feef61928cd97abec858069e2a0fe1066d525e4aa',
+  // token: '806d73c574bf4c478767223feef61928cd97abec858069e2a0fe1066d525e4aa',
+  token: null,
   cb: {
     onGet: d => console.log('onGet', d),
     onAdd: d => console.log('onAdd', d),

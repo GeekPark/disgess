@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 import Avatar from './Avatar';
@@ -70,16 +70,16 @@ class CommentItem extends React.Component {
 }
 
 CommentItem.propTypes = {
-  user: PropTypes.object,
-  isAdmin: PropTypes.bool,
-  id: PropTypes.number.isRequired,
-  body: PropTypes.string.isRequired,
-  depth: PropTypes.number.isRequired,
-  created_at: PropTypes.string.isRequired,
-  action: PropTypes.object.isRequired,
-  liked: PropTypes.bool.isRequired,
-  ups_count: PropTypes.number.isRequired,
-  parent_id: PropTypes.number,
+  user: React.PropTypes.object,
+  isAdmin: React.PropTypes.bool,
+  id: React.PropTypes.number.isRequired,
+  body: React.PropTypes.string.isRequired,
+  depth: React.PropTypes.number.isRequired,
+  created_at: React.PropTypes.string.isRequired,
+  action: React.PropTypes.object.isRequired,
+  liked: React.PropTypes.bool.isRequired,
+  ups_count: React.PropTypes.number.isRequired,
+  parent_id: React.PropTypes.number,
 };
 
 export default CommentItem;

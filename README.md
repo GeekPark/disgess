@@ -38,6 +38,14 @@ ReactDOM.render(
 ## Test
 `$ npm test`
 
+## Tip
+For dev reason, you can assign `API_URL` to your local server.
+
+```javascript
+// npm script
+"dev": "API_URL=//dev.geekpark.net:8000/api/v1/ webpack-dev-server",
+```
+
 ## License
 
 (The MIT License)

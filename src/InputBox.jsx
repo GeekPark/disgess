@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import Avatar from './Avatar';
 
@@ -43,9 +43,9 @@ class InputBox extends React.Component {
 }
 
 InputBox.propTypes = {
-  closeSelf: PropTypes.func,
-  parentID: PropTypes.number,
-  action: PropTypes.object.isRequired,
+  closeSelf: React.PropTypes.func,
+  parentID: React.PropTypes.number,
+  action: React.PropTypes.object.isRequired,
 };
 
 export default InputBox;
