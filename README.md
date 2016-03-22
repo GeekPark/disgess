@@ -4,6 +4,33 @@ GeekPark official discuss component
 ## Install
 `gnpm i @geekpark/disgess`
 
+## Usage
+```javascript
+import Disgess from '@geekpark/disgess';
+
+const config = {
+  id: 214790,
+  type: 'Topic|Video|Activity',
+  loginURL: 'where user can login (like need login)',
+  // below params was optional
+  token: 'user access token for identify user',
+  cb: {
+     // comment data json will pass to callback
+    onGet: d => alert(d),
+    onAdd,
+    onDelete,
+    onUp,
+    onDown,
+  },
+};
+
+ReactDOM.render(
+  <Disgess {...config} />,
+  document.querySelector('#comment')
+);
+
+```
+
 ## Test
 `npm test`
 

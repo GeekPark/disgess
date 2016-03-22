@@ -34,7 +34,10 @@ class Comments extends React.Component {
     const { type, token, id } = this.props;
     const { get, user } = generAPI(token);
     get({ type, id })
-      .then(d => _this.setState({ comments: modifyProps(d) }));
+      .then(d => {
+        _this.setState({ comments: modifyProps(d) });
+        _this.doCallback('onGet', d);
+      });
 
     if (!token.length) return;
     user().then(d => {
@@ -43,6 +46,11 @@ class Comments extends React.Component {
       }
       _this.setState({ currentUser: d });
     });
+  }
+
+  doCallback(funName, param) {
+    const { cb } = this.props;
+    if (tryKey(cb, funName) !== null) cb[funName](param);
   }
 
   render() {
@@ -65,6 +73,7 @@ class Comments extends React.Component {
           newComment.user = _this.state.currentUser;
           const comments = _this.state.comments.concat([newComment]);
           _this.setState({ comments });
+          _this.doCallback('onAdd', newComment);
         });
       },
       delete(commentID) {
@@ -72,6 +81,7 @@ class Comments extends React.Component {
           API.delete({ id: commentID })
             .then(() => {
               _this.setState({ comments: _this.state.comments.filter(v => v.id !== commentID) });
+              _this.doCallback('onDelete', null);
             });
         }
       },
@@ -88,6 +98,8 @@ class Comments extends React.Component {
               if (v.id === commentID) {
                 newState.liked = !v.liked;
                 newState.ups_count = d.ups_count;
+                const cbType = v.liked ? 'onUp' : 'onDown';
+                _this.doCallback(cbType, newState);
               }
               return newState;
             }),
@@ -123,10 +135,11 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-  token: PropTypes.string,
   id: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
   loginURL: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  token: PropTypes.string,
+  cb: PropTypes.object,
 };
 
 export default Comments;
