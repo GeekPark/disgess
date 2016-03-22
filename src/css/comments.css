@@ -1,9 +1,5 @@
-html, body {
-  padding: 0;
-}
-
 .container {
-  width: 60vw;
+  width: 100%;
   font-size: 16px;
   font-family: 'Helvetica Neue', 'Helvetica','Hiragino Sans GB', 'PingHei', 'PingFang SC', 'STHeitiSC-Light', 'Microsoft YaHei','Lantinghei SC', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;

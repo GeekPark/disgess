@@ -2,7 +2,11 @@
 GeekPark official discuss component
 
 ## Install
-`gnpm i @geekpark/disgess`
+> `react`, `react-dom`, `moment` was external dependencies for reuse, install its first
+
+`$ npm i react react-dom moment --save`
+
+`$ gnpm i @geekpark/disgess --save`
 
 ## Usage
 ```javascript
@@ -32,7 +36,7 @@ ReactDOM.render(
 ```
 
 ## Test
-`npm test`
+`$ npm test`
 
 ## License
 

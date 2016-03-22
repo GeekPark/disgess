@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --hot --inline",
     "test": "npm run lint",
-    "lint": "eslint src/**/*.js*"
+    "lint": "eslint src/**/*.js* && npm run build",
+    "build": "NODE_ENV=production webpack -p"
   },
   "author": "Vanilla",
   "license": "MIT",
@@ -33,14 +34,14 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "moment": "^2.12.0",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "dependencies": {
     "babel-plugin-transform-object-assign": "^6.5.0",
     "es6-promise": "^3.1.2",
-    "moment": "^2.12.0",
-    "react": "^0.14.7",
-    "react-dom": "^0.14.7",
     "whatwg-fetch": "^0.11.0"
   }
 }

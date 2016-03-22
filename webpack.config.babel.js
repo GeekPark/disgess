@@ -1,6 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config = {
   context: __dirname,
   entry: {
@@ -47,5 +49,19 @@ const config = {
     host: '0.0.0.0',
   },
 };
+
+if (isProduction) {
+  config.entry = {
+    index: './src/Comments.jsx',
+  };
+
+  config.externals = {
+    moment: 'moment',
+    react: 'react',
+    'react-dom': 'react-dom',
+  };
+
+  config.output.path = './';
+}
 
 export default config;

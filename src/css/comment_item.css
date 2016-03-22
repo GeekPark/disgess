@@ -27,12 +27,14 @@
   }
 }
 
-.depth-2 {
-  margin-left: 50px;
-}
+@media screen and (min-width: 480px) {
+  .depth-2 {
+    margin-left: 50px;
+  }
 
-.depth-3 {
-  margin-left: 100px;
+  .depth-3 {
+    margin-left: 100px;
+  }
 }
 
 .avatar-container {
