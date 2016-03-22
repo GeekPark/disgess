@@ -23,18 +23,22 @@ const generateFormData = form => {
 
 const withToken = token => `?access_token=${token}`;
 
-export default {
-  get: ({ token, type, id }) => apiFetch(`comments.json${withToken(token)}&commentable_type=${type}&commentable_id=${id}`),
+const generAPI = token => ({
+  user: () => apiFetch(`user.json${withToken(token)}`),
 
-  delete: ({ token, id }) => apiFetch(`comments/${id}.json${withToken(token)}`, { method: 'DELETE' }),
+  get: ({ type, id }) => apiFetch(`comments.json${withToken(token)}&commentable_type=${type}&commentable_id=${id}`),
 
-  like: ({ token, id }) => apiFetch(`comments/${id}/up.json${withToken(token)}`, { method: 'PUT' }),
+  delete: ({ id }) => apiFetch(`comments/${id}.json${withToken(token)}`, { method: 'DELETE' }),
+
+  like: ({ id }) => apiFetch(`comments/${id}/up.json${withToken(token)}`, { method: 'PUT' }),
 
   /*
   @params: commentable_id, commentable_type, content, [parent_id]
   */
-  add: params => apiFetch('comments.json', {
+  add: params => apiFetch(`comments.json${withToken(token)}`, {
     method: 'POST',
     body: generateFormData(params),
   }),
-};
+});
+
+export default generAPI;
