@@ -135,7 +135,7 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-  id: React.PropTypes.number.isRequired,
+  id: React.PropTypes.string.isRequired,
   loginURL: React.PropTypes.string.isRequired,
   type: React.PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
   token: React.PropTypes.string,
