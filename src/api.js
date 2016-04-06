@@ -21,7 +21,9 @@ const generateFormData = form => {
   return f;
 };
 
-const withToken = token => token === undefined || token === null ? '?' : `?access_token=${token}`;
+const withToken = token => (
+  token === undefined || token === null ? '?' : `?access_token=${token}`
+);
 
 const generAPI = token => ({
   user: () => apiFetch(`user.json${withToken(token)}`),
