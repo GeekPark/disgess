@@ -38,7 +38,6 @@ const config = {
   plugins: [
     new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /zh-cn/),
     new webpack.ProvidePlugin({
-      Promise: 'es6-promise',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
   ],
