@@ -9,7 +9,6 @@ import InputBox from './InputBox';
 import style from './css/comments';
 
 import sortBy from 'lodash/sortBy';
-// const sortBy = require('lodash/sortBy');
 
 const modifyProps = prop => prop.map(v => {
   const result = v;
