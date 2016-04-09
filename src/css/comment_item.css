@@ -28,6 +28,9 @@
 }
 
 @media screen and (min-width: 480px) {
+  .depth-1 {
+    border: none;
+  }
   .depth-2 {
     margin-left: 50px;
   }

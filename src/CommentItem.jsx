@@ -6,6 +6,7 @@ import DeleteBtn from './DeleteBtn';
 import InputBox from './InputBox';
 
 import style from './css/comment_item';
+import { tryKey } from './utils';
 
 moment.locale('zh-cn');
 
@@ -37,8 +38,8 @@ class CommentItem extends React.Component {
   }
 
   render() {
-    const { id, body, depth, user, parent_id, created_at, isAdmin, action, liked, ups_count } = this.props;
-    const isReplyStyle = parent_id === 0 ? '' : style.reply;
+    const { id, body, depth, user, created_at, isAdmin, action, liked, ups_count } = this.props;
+    const isReplyStyle = depth === 1 ? '' : style.reply;
     const userURL = user.id ? `//www.geekpark.net/users/${user.id}` : 'javascript:;';
     const replyBtn = depth < 3 ? (
       <a href="javascript:;" onClick={this.toggleInput}>{this.state.showInput ? '取消回复' : '回复'}</a>
