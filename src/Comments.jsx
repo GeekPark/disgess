@@ -8,6 +8,8 @@ import InputBox from './InputBox';
 
 import style from './css/comments';
 
+const sortBy = require('lodash/sortBy');
+
 const modifyProps = prop => prop.map(v => {
   const result = v;
   if (v.user === null) {
@@ -111,9 +113,7 @@ class Comments extends React.Component {
     const length = tryKey(this.state.comments, 'length');
 
     // order by ancestry
-    const commentList = this.state.comments.sort((a, b) => (
-      a.ancestry.toString() > b.ancestry.toString()
-    ));
+    const commentList = sortBy(this.state.comments, x => x.ancestry);
 
     return (
       <div className={style.container}>
