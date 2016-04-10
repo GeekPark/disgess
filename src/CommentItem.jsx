@@ -6,7 +6,6 @@ import DeleteBtn from './DeleteBtn';
 import InputBox from './InputBox';
 
 import style from './css/comment_item';
-import { tryKey } from './utils';
 
 moment.locale('zh-cn');
 
