@@ -5,7 +5,7 @@ import Avatar from './Avatar';
 import DeleteBtn from './DeleteBtn';
 import InputBox from './InputBox';
 
-import style from './css/comment_item';
+import style from './css/comment_item.css';
 
 moment.locale('zh-cn');
 
@@ -63,7 +63,7 @@ class CommentItem extends React.Component {
             </a>
           </div>
         </div>
-        { this.state.showInput ? <InputBox action={action} parentID={id} closeSelf={this.closeSelf} /> : null }
+        {this.state.showInput ? <InputBox action={action} parentID={id} closeSelf={this.closeSelf} /> : null}
       </div>
     );
   }

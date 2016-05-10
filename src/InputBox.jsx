@@ -2,7 +2,7 @@ import React from 'react';
 
 import Avatar from './Avatar';
 
-import style from './css/comments';
+import style from './css/comments.css';
 
 class InputBox extends React.Component {
   constructor() {
@@ -31,7 +31,8 @@ class InputBox extends React.Component {
           <Avatar name={user.username} src={user.avatar.url} />
           <form className={style['input-form']}>
             <textarea className={style.textarea} ref="textarea" autoFocus={isReply}></textarea>
-            <input type="button" className={style.submit}
+            <input
+              type="button" className={style.submit}
               onClick={this.handleClick}
               value={isReply ? '提交回复' : '发表评论'}
             />

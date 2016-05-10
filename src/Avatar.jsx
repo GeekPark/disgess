@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './css/comment_item';
+import style from './css/comment_item.css';
 
 const Avatar = ({ name, src }) => (
   <div className={style['avatar-container']}>

@@ -3,10 +3,10 @@ import React from 'react';
 import generAPI from './api';
 import { tryKey, mockUser } from './utils';
 
-import CommentItem from './commentItem';
+import CommentItem from './CommentItem';
 import InputBox from './InputBox';
 
-import style from './css/comments';
+import style from './css/comments.css';
 
 const modifyProps = prop => prop.map(v => {
   const result = v;
@@ -30,21 +30,21 @@ class Comments extends React.Component {
   }
 
   componentWillMount() {
-    const _this = this;
+    const z = this;
     const { type, token, id } = this.props;
     const { get, user } = generAPI(token);
     get({ type, id })
       .then(d => {
-        _this.setState({ comments: modifyProps(d) });
-        _this.doCallback('onGet', d);
+        z.setState({ comments: modifyProps(d) });
+        z.doCallback('onGet', d);
       });
 
     if (!token) return;
     user().then(d => {
       if (d.roles.indexOf('admin') !== -1) {
-        _this.setState({ isAdmin: true });
+        z.setState({ isAdmin: true });
       }
-      _this.setState({ currentUser: d });
+      z.setState({ currentUser: d });
     });
   }
 
@@ -54,7 +54,7 @@ class Comments extends React.Component {
   }
 
   render() {
-    const _this = this;
+    const z = this;
     const { type, id, token } = this.props;
     const API = generAPI(token);
 
@@ -70,18 +70,18 @@ class Comments extends React.Component {
         }, params))
         .then(d => {
           const newComment = d;
-          newComment.user = _this.state.currentUser;
-          const comments = _this.state.comments.concat([newComment]);
-          _this.setState({ comments });
-          _this.doCallback('onAdd', newComment);
+          newComment.user = z.state.currentUser;
+          const comments = z.state.comments.concat([newComment]);
+          z.setState({ comments });
+          z.doCallback('onAdd', newComment);
         });
       },
       delete(commentID) {
         if (confirm('确认删除该评论？')) {
           API.delete({ id: commentID })
             .then(() => {
-              _this.setState({ comments: _this.state.comments.filter(v => v.id !== commentID) });
-              _this.doCallback('onDelete', null);
+              z.setState({ comments: z.state.comments.filter(v => v.id !== commentID) });
+              z.doCallback('onDelete', null);
             });
         }
       },
@@ -92,14 +92,14 @@ class Comments extends React.Component {
         }
 
         API.like({ id: commentID }).then(d => {
-          _this.setState({
-            comment: _this.state.comments.map(v => {
+          z.setState({
+            comment: z.state.comments.map(v => {
               const newState = v;
               if (v.id === commentID) {
                 newState.liked = !v.liked;
                 newState.ups_count = d.ups_count;
                 const cbType = v.liked ? 'onUp' : 'onDown';
-                _this.doCallback(cbType, newState);
+                z.doCallback(cbType, newState);
               }
               return newState;
             }),
@@ -119,13 +119,13 @@ class Comments extends React.Component {
       <div className={style.container}>
         {
           length ?
-          <h3>已有<span className={style['sum-number']}>{length}</span>条评论</h3> :
-          <h3>还没有评论呢，快来抢沙发！</h3>
+            <h3>已有<span className={style['sum-number']}>{length}</span>条评论</h3> :
+            <h3>还没有评论呢，快来抢沙发！</h3>
         }
         <InputBox action={action} />
         {/* empty div for css first-child selector */}
         <div>
-          { commentList.map((v, i) => (
+          {commentList.map((v, i) => (
             <CommentItem key={i} {...v} isAdmin={this.state.isAdmin} action={action} />)
           )}
         </div>
