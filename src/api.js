@@ -1,7 +1,10 @@
 import { Promise } from 'es6-promise';
 
 const URL = process.env.API_URL || '//www.geekpark.net/api/v1/';
-const api = path => `${URL}${path}`;
+const USER_URL = process.env.USER_API_URL || 'https://account.geekpark.net/api/v1/';
+const api = path => (
+  `${/user\.json/.test(path) ? USER_URL : URL}${path}`
+);
 
 const catchErr = res => {
   console.error(res);

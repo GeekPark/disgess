@@ -55,7 +55,7 @@ class Comments extends React.Component {
 
   render() {
     const z = this;
-    const { type, id, token } = this.props;
+    const { type, id, token, loginURL } = this.props;
     const API = generAPI(token);
 
     // public action for components
@@ -87,7 +87,7 @@ class Comments extends React.Component {
       },
       like(commentID) {
         if (!token) {
-          if (confirm('点赞需要登录喔，点击确定去登录')) window.location.href = this.props.loginURL;
+          if (confirm('点赞需要登录喔，点击确定去登录')) window.location.href = loginURL;
           return;
         }
 
