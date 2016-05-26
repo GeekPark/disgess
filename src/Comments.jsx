@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import generAPI from './api';
 import { tryKey, mockUser } from './utils';
@@ -41,7 +41,7 @@ class Comments extends React.Component {
 
     if (!token) return;
     user().then(d => {
-      if (d.roles.indexOf('admin') !== -1) {
+      if (d.roles !== undefined && d.roles.indexOf('admin') !== -1) {
         z.setState({ isAdmin: true });
       }
       z.setState({ currentUser: d });
@@ -135,11 +135,14 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-  id: React.PropTypes.string.isRequired,
-  loginURL: React.PropTypes.string.isRequired,
-  type: React.PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
-  token: React.PropTypes.string,
-  cb: React.PropTypes.object,
+  id: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  loginURL: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['Topic', 'Video', 'Activity']).isRequired,
+  token: PropTypes.string,
+  cb: PropTypes.object,
 };
 
 export default Comments;
