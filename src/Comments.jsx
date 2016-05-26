@@ -14,7 +14,7 @@ const modifyProps = prop => prop.map(v => {
   const result = deepCopy(v);
   if (v.user === null) {
     result.user = mockUser();
-  } else if (result.user.avatar_url === undefined){
+  } else if (result.user.avatar_url === undefined) {
     result.user.avatar_url = randomAvatar();
   } else {
     result.user.avatar_url += '?imageView2/1/w/100/h/100';
