@@ -1,7 +1,5 @@
 const userName = [
-  'R2-D2',
-  'C-3PO',
-  'BB-8',
+  '极客漫游者',
 ];
 
 const avatars = [];
