@@ -17,9 +17,7 @@ const randomAvatar = () => avatars[random(0, avatars.length - 1)];
 
 const mockUser = () => ({
   username: randomUserName(),
-  avatar: {
-    url: randomAvatar(),
-  },
+  avatar_url: randomAvatar(),
 });
 
 export { random, randomUserName, tryKey, randomAvatar, mockUser };

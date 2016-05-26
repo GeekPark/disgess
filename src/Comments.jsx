@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
+import deepFreeze from 'deep-freeze';
+import deepCopy from 'deepcopy';
 
 import generAPI from './api';
-import { tryKey, mockUser } from './utils';
+import { tryKey, mockUser, randomAvatar } from './utils';
 
 import CommentItem from './CommentItem';
 import InputBox from './InputBox';
@@ -9,9 +11,11 @@ import InputBox from './InputBox';
 import style from './css/comments.css';
 
 const modifyProps = prop => prop.map(v => {
-  const result = v;
+  const result = deepCopy(v);
   if (v.user === null) {
     result.user = mockUser();
+  } else if (result.user.avatar_url === undefined){
+    result.user.avatar_url = randomAvatar();
   } else {
     result.user.avatar_url += '?imageView2/1/w/100/h/100';
   }
@@ -35,6 +39,7 @@ class Comments extends React.Component {
     const { get, user } = generAPI(token);
     get({ type, id })
       .then(d => {
+        deepFreeze(d);
         z.setState({ comments: modifyProps(d) });
         z.doCallback('onGet', d);
       });
