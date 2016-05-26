@@ -13,7 +13,7 @@ const modifyProps = prop => prop.map(v => {
   if (v.user === null) {
     result.user = mockUser();
   } else {
-    result.user.avatar.url += '?imageView2/1/w/100/h/100';
+    result.user.avatar_url += '?imageView2/1/w/100/h/100';
   }
   return result;
 });

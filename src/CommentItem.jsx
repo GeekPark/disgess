@@ -46,7 +46,7 @@ class CommentItem extends React.Component {
 
     return (
       <div id={`comment-${id}`} className={`${style[`depth-${depth}`]} ${isReplyStyle} ${style.item}`}>
-        <Avatar name={user.username} src={user.avatar.url} />
+        <Avatar name={user.username} src={user.avatar_url} />
         <div className={style['body-container']}>
           <div className={style.info}>
             <a href={userURL} target="_blank">{user.username}</a>

@@ -28,7 +28,7 @@ class InputBox extends React.Component {
     return (
       <div className={`${style.inputbox} ${isReply ? style['reply-inputbox'] : ''}`}>
         <div style={{ position: 'relative' }}>
-          <Avatar name={user.username} src={user.avatar.url} />
+          <Avatar name={user.username} src={user.avatar_url} />
           <form className={style['input-form']}>
             <textarea className={style.textarea} ref="textarea" autoFocus={isReply}></textarea>
             <input
